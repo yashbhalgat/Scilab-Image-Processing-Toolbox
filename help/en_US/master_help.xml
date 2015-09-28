@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!--Begin Entities-->
+<!ENTITY a915973731eae13a75cef907069631726 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/blur.xml">
+<!ENTITY abc6ed2d20271adbf9bd85c9ae69fdea2 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/canny.xml">
+<!ENTITY a18e6c592e9f36c9c0886a813c346c9c4 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/cornerEigenValAndVecs.xml">
+<!ENTITY a35980a1d1fab90578ac7c4b747f6ab36 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/cornerHarris.xml">
+<!ENTITY a93d8b126ae426d7c3529da4ff73fdc5a SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/filter2D.xml">
+<!ENTITY a44f17e4eab3a39c885040622affecf48 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/gaussianblur.xml">
+<!ENTITY adf8a871a9327a89b53a14d31e3d01351 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/getTextSize.xml">
+<!ENTITY a08c44d249148fa4e7306cab55f14cd9e SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/houghlines.xml">
+<!ENTITY ac1a5024d24d45cb6500b46804b03f7f6 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/houghlinesp.xml">
+<!ENTITY aace107edf3003370b9463200590898a1 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/im2double.xml">
+<!ENTITY afe9b35acbc0d8ed740196437707adb9a SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/imcontrast.xml">
+<!ENTITY aab9e2a7ffe15347e9164c8ea04e3be11 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/imcrop.xml">
+<!ENTITY a93de023bb159e1f523dec4e5349107c8 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/imread.xml">
+<!ENTITY a5f47847ce4f4c28ae180501b97848165 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/imresize.xml">
+<!ENTITY abeb6d6b4e1e85570ee8bb381587fd8e9 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/imsharpen.xml">
+<!ENTITY a4f5f083597cb805954db9749761e191c SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/imwrite.xml">
+<!ENTITY a5290a4692ad2e2b5fbb74cef62ca66d6 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/montage.xml">
+<!ENTITY a7cbbfb29d95645c72162a35c150fdd78 SYSTEM "/home/yash/Downloads/Scilab_Image_Processing/Scilab-Image-Processing-Toolbox-master/help/en_US/undistort.xml">
+<!--End Entities-->
+]>
+<book version="5.0-subset Scilab" xml:lang="en_US"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info xml:id='image_processing_toolbox_manual'>
+    <title>Image Processing Toolbox</title>
+  </info>
+
+<part xml:id='section_d6e2f9b8b20cf3969113bbb4594173ec'>
+<title>Image Processing Toolbox</title>
+&a915973731eae13a75cef907069631726;
+&abc6ed2d20271adbf9bd85c9ae69fdea2;
+&a18e6c592e9f36c9c0886a813c346c9c4;
+&a35980a1d1fab90578ac7c4b747f6ab36;
+&a93d8b126ae426d7c3529da4ff73fdc5a;
+&a44f17e4eab3a39c885040622affecf48;
+&adf8a871a9327a89b53a14d31e3d01351;
+&a08c44d249148fa4e7306cab55f14cd9e;
+&ac1a5024d24d45cb6500b46804b03f7f6;
+&aace107edf3003370b9463200590898a1;
+&afe9b35acbc0d8ed740196437707adb9a;
+&aab9e2a7ffe15347e9164c8ea04e3be11;
+&a93de023bb159e1f523dec4e5349107c8;
+&a5f47847ce4f4c28ae180501b97848165;
+&abeb6d6b4e1e85570ee8bb381587fd8e9;
+&a4f5f083597cb805954db9749761e191c;
+&a5290a4692ad2e2b5fbb74cef62ca66d6;
+&a7cbbfb29d95645c72162a35c150fdd78;
+</part>
+</book>
