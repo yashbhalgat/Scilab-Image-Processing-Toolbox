@@ -26,27 +26,6 @@ extern "C"
   #include <sciprint.h>
   #include "../common.h"
   
-	//void my_convmtx2(Mat& kernal, Mat& conv, int m, int n){
-	//	int s1 = kernal.rows;
-	//	int s2 = kernal.cols;
-    //
-	//	conv = Mat::zeros((m-s1+1)*(n-s2+1),m*n,CV_64FC1);
-	//	int k = 0;
-    //
-	//	for(int i=0;i<m-s1+1;i++){
-	//		for(int j=0;j<n-s2+1;j++){
-	//			for(int p=0;p<s1;p++){
-	//				Mat roiPart1 = kernal.rowRange(p,p+1).colRange(0,s2);
-	//				Mat roiPart2 = conv.rowRange(k,k+1).colRange((i+p)*n+j,(i+p)*n+j+s2);
-	//				roiPart1.copyTo(roiPart2);
-	////				for(int q=0;q<s2;q++)
-	////					conv.at<double>(k,(i+p)*n+j+q)=kernal.at<double>(p,q);
-	//			}
-	//			k++;
-	//		}
-	//	}
-	//}
-  
   int opencv_convmtx2(char *fname, unsigned long fname_len)
   {
 
