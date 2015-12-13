@@ -1,4 +1,3 @@
-//Author  :Priyanka Hiranandani NIT Surat   
      function[] =show(Img,ColorMap) 
      FigureHandle = gcf();
      drawlater();

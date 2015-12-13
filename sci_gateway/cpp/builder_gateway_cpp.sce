@@ -52,6 +52,7 @@ names = [
             "houghlinesp","opencv_houghlinesp";
             "imgaussfilt3","opencv_imgaussfilt3";
             "imhmax","opencv_imhmax";
+            "convmtx2","opencv_convmtx2";
 		];
 
 files = [
@@ -105,7 +106,8 @@ files = [
             "opencv_getrotationmatrix2D.cpp",
             "opencv_houghlinesp.cpp",
             "opencv_imgaussfilt3.cpp",
-            "opencv_imhmax.cpp"
+            "opencv_imhmax.cpp",
+            "opencv_convmtx2.cpp"
 		];
 
 function builder_gw_cpp()
