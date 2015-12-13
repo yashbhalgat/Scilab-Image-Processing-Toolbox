@@ -53,6 +53,7 @@ names = [
             "imgaussfilt3","opencv_imgaussfilt3";
             "imhmax","opencv_imhmax";
             "convmtx2","opencv_convmtx2";
+            "imboxfilt3","opencv_imboxfilt3";
 		];
 
 files = [
@@ -107,7 +108,8 @@ files = [
             "opencv_houghlinesp.cpp",
             "opencv_imgaussfilt3.cpp",
             "opencv_imhmax.cpp",
-            "opencv_convmtx2.cpp"
+            "opencv_convmtx2.cpp",
+            "opencv_imboxfilt3.cpp"
 		];
 
 function builder_gw_cpp()
