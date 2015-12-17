@@ -63,6 +63,7 @@ list_functions = [ 'imread';
                    'imhmax';
                    'convmtx2';
                    'imboxfilt3';
+                   'imguidedfilter';
 ];
 addinter(libskeleton_imagepr_path + filesep() + 'libskeleton_imageprocessing' + getdynlibext(), 'libskeleton_imageprocessing', list_functions);
 // remove temp. variables on stack
