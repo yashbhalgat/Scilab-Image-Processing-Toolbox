@@ -55,6 +55,8 @@ names = [
             "convmtx2","opencv_convmtx2";
             "imboxfilt3","opencv_imboxfilt3";
             "imguidedfilter","opencv_imguidedfilter";
+            "integralImage","opencv_integralImage";
+            "adapthisteq","opencv_adapthisteq";
 		];
 
 files = [
@@ -111,7 +113,9 @@ files = [
             "opencv_imhmax.cpp",
             "opencv_convmtx2.cpp",
             "opencv_imboxfilt3.cpp",
-            "opencv_imguidedfilter.cpp"
+            "opencv_imguidedfilter.cpp",
+            "opencv_integralImage.cpp",
+            "opencv_adapthisteq.cpp"
 		];
 
 function builder_gw_cpp()
