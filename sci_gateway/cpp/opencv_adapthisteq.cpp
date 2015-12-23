@@ -32,30 +32,7 @@ extern "C"
   #include <localization.h>
   #include <sciprint.h>
   #include "../common.h"
-  //void calcCLAHEVal(Mat inpMat, float Th, float* C)
-	//int histSize = 256; //from 0 to 255
-	//float range[] = { 0, 256 } ;
-	//const float* histRange = { range };
-	//
-	//Mat H;
-	//calcHist( &inpMat, 1, 0, Mat(), H, 1, &histSize, &histRange);
-	//
-  //  int N = inpMat.rows;
-  //  int M = inpMat.cols;
-  //  H=H/(N*M);
-  //  
-  //  for(int i=0; i<256; i++){
-  //      if(H[i] > Th) H[i] = Th;
-  //  }
-  //  
-  //  double contrastArea = 1 - sum(H);
-  //  double height = contrastArea / 256.00;
-  //  
-  //  H = H + floor(height);
-  //  
-  //  C[0] = H.at<double>(0,0)*255;
-  //  for(int k=1; k<256; k++) C[k]= C[k-1] + (H.at<double>(0,k)*255);
-  //}
+  
   
   
   int opencv_adapthisteq(char *fname, unsigned long fname_len)
@@ -96,10 +73,10 @@ extern "C"
 
 
     //Main function
-    cvtColor(input_img, input_img, CV_RGB2GRAY);
+    //cvtColor(input_img, input_img, CV_RGB2GRAY);
 	
 	float C[256];
-    int d = input_img.channels();
+    
     int row = input_img.rows;
     int col = input_img.cols;
     
@@ -118,44 +95,89 @@ extern "C"
 	Mat H;
     Mat output_img = Mat::zeros(input_img.size(), input_img.type());
 	
-	for(int i=0; i<row; i++){
-		for(int j=0; j<col; j++){
-            min_x = max(0,i-window_x);
-            min_y = max(0,j-window_y);
-            max_x = min(row-1,i+window_x);
-            max_y = min(col-1,j+window_y);
-            window_matrix = input_img(Range(min_x, max_x), Range(min_y, max_y));
-            //window_matrix = inputImage(min_x:max_x,min_y:max_y);
-			
-			if(input_img.at<uchar>(i,j)==0) output_img.at<uchar>(i,j) =0;
-            else{
-				calcHist(&window_matrix, 1, 0, Mat(), H, 1, &histSize, &histRange);
+	if(input_img.channels()==1){
+		for(int i=0; i<row; i++){
+			for(int j=0; j<col; j++){
+				min_x = max(0,i-window_x);
+				min_y = max(0,j-window_y);
+				max_x = min(row-1,i+window_x);
+				max_y = min(col-1,j+window_y);
+				window_matrix = input_img(Range(min_x, max_x), Range(min_y, max_y));
+				//window_matrix = inputImage(min_x:max_x,min_y:max_y);
 				
-				int N = window_matrix.rows;
-				int M = window_matrix.cols;
-				H=H/(N*M);
-//				cout<<H<<endl;
-				
-				for(int z=0; z<256; z++){
-					if(H.at<float>(0,z) > clip_limit) H.at<float>(0,z) = clip_limit;
+				if(input_img.at<uchar>(i,j)==0) output_img.at<uchar>(i,j) =0;
+				else{
+					calcHist(&window_matrix, 1, 0, Mat(), H, 1, &histSize, &histRange);
+					
+					int N = window_matrix.rows;
+					int M = window_matrix.cols;
+					H=H/(N*M);
+	//				cout<<H<<endl;
+					
+					for(int z=0; z<256; z++){
+						if(H.at<float>(0,z) > clip_limit) H.at<float>(0,z) = clip_limit;
+					}
+					
+					float contrastArea = 1.0 - cv::sum(H).val[0];
+					float height = contrastArea / 256.00;
+					
+					H = H + height;
+					//cout<<cv::sum(H).val[0]<<endl;
+					C[0] = H.at<float>(0,0)*255;
+					for(int k=1; k<256; k++){
+						C[k]= C[k-1] + H.at<float>(0,k)*255;
+					}
+					//cout<<C[255]<<endl;
+					output_img.at<uchar>(i,j) = C[input_img.at<uchar>(i,j)];
 				}
-				
-				float contrastArea = 1.0 - cv::sum(H).val[0];
-				float height = contrastArea / 256.00;
-				
-				H = H + height;
-				//cout<<cv::sum(H).val[0]<<endl;
-				C[0] = H.at<float>(0,0)*255;
-				for(int k=1; k<256; k++){
-					C[k]= C[k-1] + H.at<float>(0,k)*255;
-				}
-				//cout<<C[255]<<endl;
-				output_img.at<uchar>(i,j) = C[input_img.at<uchar>(i,j)];
-            }
+			}
 		}
 	}
-    
-    
+    else if(input_img.channels()==3){
+		vector<cv::Mat> Ichannels;
+		split(input_img, Ichannels);
+		
+		for(int d=0; d<3; d++){
+			for(int i=0; i<row; i++){
+				for(int j=0; j<col; j++){
+					min_x = max(0,i-window_x);
+					min_y = max(0,j-window_y);
+					max_x = min(row-1,i+window_x);
+					max_y = min(col-1,j+window_y);
+					
+					window_matrix = Ichannels[d](Range(min_x, max_x), Range(min_y, max_y));
+										
+					if(Ichannels[d].at<uchar>(i,j)==0) output_img.at<Vec3b>(i,j)[d] =0;
+					else{
+						calcHist(&window_matrix, 1, 0, Mat(), H, 1, &histSize, &histRange);
+						
+						int N = window_matrix.rows;
+						int M = window_matrix.cols;
+						H=H/(N*M);
+		//				cout<<H<<endl;
+						
+						for(int z=0; z<256; z++){
+							if(H.at<float>(0,z) > clip_limit) H.at<float>(0,z) = clip_limit;
+						}
+						
+						float contrastArea = 1.0 - cv::sum(H).val[0];
+						float height = contrastArea / 256.00;
+						
+						H = H + height;
+						//cout<<cv::sum(H).val[0]<<endl;
+						C[0] = H.at<float>(0,0)*255;
+						for(int k=1; k<256; k++){
+							C[k]= C[k-1] + H.at<float>(0,k)*255;
+						}
+						//cout<<C[255]<<endl;
+						output_img.at<Vec3b>(i,j)[d] = C[Ichannels[d].at<uchar>(i,j)];
+					}
+				}
+			}
+		}
+		
+		
+	}
     
 	
 
