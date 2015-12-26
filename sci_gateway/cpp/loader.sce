@@ -66,6 +66,7 @@ list_functions = [ 'imread';
                    'imguidedfilter';
                    'integralImage';
                    'adapthisteq';
+                   'affine2d';
 ];
 addinter(libskeleton_imagepr_path + filesep() + 'libskeleton_imageprocessing' + getdynlibext(), 'libskeleton_imageprocessing', list_functions);
 // remove temp. variables on stack

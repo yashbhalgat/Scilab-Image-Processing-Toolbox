@@ -99,7 +99,7 @@ extern "C"
         for(j=0;j<n;j++)
             kernelArray[i][j]=kernel[(i*n)+j];
     // converting the array to a matrix, so that we can pass it into the filter2D function    
-    Mat kernelMatrix(n, n, CV_32FC1, &kernelArray);
+    Mat kernelMatrix(n, n, CV_64FC1, &kernelArray);
 
     //for value of anchorX
     sciErr = getVarAddressFromPosition(pvApiCtx,4,&piAddr4);

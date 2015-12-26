@@ -62,6 +62,7 @@ extern Gatefunc opencv_imboxfilt3;
 extern Gatefunc opencv_imguidedfilter;
 extern Gatefunc opencv_integralImage;
 extern Gatefunc opencv_adapthisteq;
+extern Gatefunc opencv_affine2d;
 static GenericTable Tab[]={
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_imread,"imread"},
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_blur,"blur"},
@@ -119,6 +120,7 @@ static GenericTable Tab[]={
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_imguidedfilter,"imguidedfilter"},
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_integralImage,"integralImage"},
   {(Myinterfun)sci_gateway_without_putlhsvar,opencv_adapthisteq,"adapthisteq"},
+  {(Myinterfun)sci_gateway_without_putlhsvar,opencv_affine2d,"affine2d"},
 };
  
 int C2F(libskeleton_imageprocessing)()
