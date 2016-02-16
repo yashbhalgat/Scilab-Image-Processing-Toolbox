@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imguidedfilter" xml:lang="en_US"
+					xmlns="http://docbook.org/ns/docbook"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					xmlns:svg="http://www.w3.org/2000/svg"
+					xmlns:ns3="http://www.w3.org/1999/xhtml"
+					xmlns:mml="http://www.w3.org/1998/Math/MathML"
+					xmlns:db="http://docbook.org/ns/docbook">
+
+	<refnamediv>
+		<refname>imguidedfilter</refname>
+
+		<refpurpose>Applies a guided filtering method on the image</refpurpose>
+	</refnamediv>
+
+	<refsynopsisdiv>
+		<title>Calling Sequence</title>
+
+		<synopsis>guidedFiltered_image = imguidedfilter(input_img, guidance_img);</synopsis>
+	</refsynopsisdiv>
+	
+	<refsection>
+   		<title>Arguments</title>
+		<variablelist>
+			<varlistentry><term>input_img: </term>
+				<listitem><para>the image that has to be filtered</para></listitem>
+			</varlistentry>
+			<varlistentry><term>guidance_img: </term>
+				<listitem><para>the filtering process is guided by this image. It has to be the same size as the original image</para></listitem>
+			</varlistentry>
+			<varlistentry><term>r: </term>
+				<listitem><para>size of the filter used. Default used = 4.</para></listitem>
+			</varlistentry>
+			<varlistentry><term>eps:</term>
+				<listitem><para>handling parameter used when finding the covariance. Default = 0.04*255*255</para></listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection>
+		<title>Description</title>
+
+		<para>References : Kaiming He, Jian Sun, Xiaoou Tang, "Guided Image Filtering", IEEE Transactions 
+			on Pattern Analysis and Machine Intelligence, vol.35, no. 6, 
+			pp. 1397-1409, June 2013, doi:10.1109/TPAMI.2012.213
+			
+			This function performs edge-preserving smoothening of the image guided by another image of similar size.
+		</para>
+	</refsection>
+
+	<refsection>
+		<title>Example</title>
+		<programlisting role="example"><![CDATA[
+							img = imread("lena.jpg");
+							imshow(img);
+							guidedFiltered_image = imguidedfilter(img, img, 9);
+							imshow(guidedFiltered_image);
+   		]]></programlisting>
+	</refsection>
+
+	<refsection>
+		<title>Authors</title>
+
+		<simplelist type="vert">
+			<member>Yash Bhalgat</member>
+		</simplelist>
+	</refsection>
+</refentry>

@@ -58,6 +58,7 @@ names = [
             "integralImage","opencv_integralImage";
             "adapthisteq","opencv_adapthisteq";
             "affine2d","opencv_affine2d";
+            "integralBoxFilter","opencv_integralBoxFilter";
 		];
 
 files = [
@@ -117,7 +118,8 @@ files = [
             "opencv_imguidedfilter.cpp",
             "opencv_integralImage.cpp",
             "opencv_adapthisteq.cpp",
-            "opencv_affine2d.cpp"
+            "opencv_affine2d.cpp",
+            "opencv_integralBoxFilter.cpp"
 		];
 
 function builder_gw_cpp()

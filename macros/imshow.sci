@@ -1,5 +1,5 @@
 //Author  :Priyanka Hiranandani NIT Surat    
-function[] =imshow(Image)
+function[Img, MaximumGrayValue] =imshow(Image)
     
     global TYPE_DOUBLE;         //retrieving list and creating 3 dimensional matrix out of it
     dimensions=size(Image)

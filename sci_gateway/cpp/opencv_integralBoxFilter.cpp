@@ -1,15 +1,19 @@
-/*************************************************************************************
+/***************************************************
 Author : Yash S. Bhalgat
-***************************************************************************************
+****************************************************
 Usage :
-	output_image = integralBoxFilter(input_img, guidance_img, r, eps);
+	1) B = integralBoxFilter(intA);
+		In this usage, the default filter size of 3x3 is used.
+	
+	2) B = integralBoxFilter(intA, filter_height, filter_width);
 
 Example : 
-	img = imread("lena.jpg");
-	imshow(img);
-	guidedFiltered_image = imguidedfilter(img, img, 9);
-	imshow(guidedFiltered_image);
-***********************************************************************/
+	A = imread("lena.jpg");
+	imshow(A);
+	intA = integralImage(A);
+	B = integralBoxFilter(img, 9, 9);
+	imshow(B);
+***************************************************/
 
 #include <numeric>
 #include "opencv2/core/core.hpp"
@@ -35,78 +39,87 @@ extern "C"
     int iRows=0,iCols=0;
     int *piAddr2  = NULL;
     int *piAddr3  = NULL;
-    int *piAddr4  = NULL;
     int i,j,k;
 	
 	//Default filter size
-	double r= 4;
-	double eps= 0.2 * 0.2 * 255 * 255;
+	double filter_height = 3;
+	double filter_width = 3;
 
     //checking input argument
-    CheckInputArgument(pvApiCtx, 1, 4);
+    CheckInputArgument(pvApiCtx, 1, 3);
     CheckOutputArgument(pvApiCtx, 1, 1) ;
 	
 	int inputarg = *getNbInputArgument(pvApiCtx);
 	
 	
-    Mat I;
-    retrieveImage(I,1);
+    Mat image;
+    retrieveImage(image,1);
 	
-	Mat p=I;
 	
-	if(inputarg > 1){
+	if(inputarg >= 2){
 		//for value of filter_height
-		//sciErr = getVarAddressFromPosition(pvApiCtx,2,&piAddr2);
-		//if (sciErr.iErr)
-		//{
-		//	printError(&sciErr, 0);
-		//	return 0;
-		//}
-		//intErr = getScalarDouble(pvApiCtx, piAddr2, &filter_height);
-		//if(intErr)
-		//	return intErr;
-		Mat G;
-		retrieveImage(G,1);
-		p=G;
-		
-		if(inputarg > 2){
-			sciErr = getVarAddressFromPosition(pvApiCtx,3,&piAddr3);
-			if (sciErr.iErr)
-			{
-				printError(&sciErr, 0);
-				return 0;
-			}
-			intErr = getScalarDouble(pvApiCtx, piAddr3, &r);
-			if(intErr)
-				return intErr;
+		sciErr = getVarAddressFromPosition(pvApiCtx,2,&piAddr2);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
 		}
-		if(inputarg > 3){
-			sciErr = getVarAddressFromPosition(pvApiCtx,4,&piAddr4);
-			if (sciErr.iErr)
-			{
-				printError(&sciErr, 0);
-				return 0;
-			}
-			intErr = getScalarDouble(pvApiCtx, piAddr4, &eps);
-			if(intErr)
-				return intErr;
+		intErr = getScalarDouble(pvApiCtx, piAddr2, &filter_height);
+		if(intErr)
+			return intErr;
+
+		//for value of filter_width
+		sciErr = getVarAddressFromPosition(pvApiCtx,3,&piAddr3);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return 0;
 		}
+		intErr = getScalarDouble(pvApiCtx, piAddr3, &filter_width);
+		if(intErr)
+			return intErr;
 	}
 
 
-    Mat guidedFiltered_image;
+    //taking the cases which can lead to an error
+    Mat filtered_image(image.rows,image.cols,image.type());
+    
+    if(filter_height<0)
+    {
+        sciprint("Positive Value Required for Height. 3 value was used instead");
+        filter_height=3;
+    }
+    if(filter_width<0)
+    {
+        sciprint("Positive Value Required for Width. 3 value was used instead");
+        filter_width=3;
+    }
+    if((int)filter_height%2==0)
+    {
+        filter_height+=1;
+        sciprint("Odd Value Required for Height. %f value was used instead",&filter_height);
+    }
+    if((int)filter_width%2==0)
+    {
+        filter_width+=1;
+        sciprint("Odd Value Required for Width. %f value was used instead",&filter_width);
+    }
 
+    //temporary size variable, to use in function
+    Size sz(filter_height,filter_width);
 
-    //Main function
+    sciprint("type id %f" , image.type());
+    
+    //opencv function called
     //if both filter_size is not given, default value of 3x3 is used
-	
+    boxFilter(image,filtered_image, -1, sz);
 
     //returning image
-    string tempstring = type2str(guidedFiltered_image.type());
+    string tempstring = type2str(filtered_image.type());
     char *checker;
     checker = (char *)malloc(tempstring.size() + 1);
     memcpy(checker, tempstring.c_str(), tempstring.size() + 1);
-    returnImage(checker,guidedFiltered_image,1);
+    returnImage(checker,filtered_image,1);
     free(checker);
 
     //Assigning the list as the Output Variable
@@ -118,3 +131,4 @@ extern "C"
   }
 /* ==================================================================== */
 }
+
