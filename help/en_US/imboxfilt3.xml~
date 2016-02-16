@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imboxfilt3" xml:lang="en_US"
+					xmlns="http://docbook.org/ns/docbook"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					xmlns:svg="http://www.w3.org/2000/svg"
+					xmlns:ns3="http://www.w3.org/1999/xhtml"
+					xmlns:mml="http://www.w3.org/1998/Math/MathML"
+					xmlns:db="http://docbook.org/ns/docbook">
+
+	<refnamediv>
+		<refname>imboxfilt3</refname>
+
+		<refpurpose>performs box-filtering of 3D-images</refpurpose>
+	</refnamediv>
+
+	<refsynopsisdiv>
+		<title>Calling Sequence</title>
+
+		<synopsis>box_filtered_image = imboxfilt3(input_img, filter_height, filter_width);</synopsis>
+	</refsynopsisdiv>
+	
+	<refsection>
+   		<title>Arguments</title>
+		<variablelist>
+			<varlistentry><term>input_img:</term>
+				<listitem><para>the image matrix on which the box-filter has to be applied</para></listitem>
+			</varlistentry>
+			<varlistentry><term>filter_height:</term>
+				<listitem><para>height of the box-filter kernel. Default value=3</para></listitem>
+			</varlistentry>
+			<varlistentry><term>filter_width:</term>
+				<listitem><para>width of the box-filter kernel. Default value=3</para></listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection>
+		<title>Description</title>
+		<para>
+			The function convolves the source image with the box-kernel of the specified size. If size is not specified, a box-filter of size 3x3 is used.
+		</para>
+	</refsection>
+
+	<refsection>
+		<title>Example</title>
+		<programlisting role="example"><![CDATA[
+							img = imread("lena.jpg");
+							imshow(img);
+							box_filtered_img = imboxfilt3(img, 9, 9);
+							imshow(box_filtered_img);
+   		]]></programlisting>
+	</refsection>
+
+	<refsection>
+		<title>Authors</title>
+
+		<simplelist type="vert">
+			<member>Yash Bhalgat</member>
+		</simplelist>
+	</refsection>
+</refentry>

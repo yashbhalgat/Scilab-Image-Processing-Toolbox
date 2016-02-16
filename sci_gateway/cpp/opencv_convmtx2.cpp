@@ -2,8 +2,10 @@
 Author : Yash S. Bhalgat
 ****************************************************
 Usage : T = convmtx2(H, m, n);
-Example:
-	
+Example:	H = imread("lena_small.jpg") //just some small image for testing
+			H = cvtColor(H,"CV_RGB2GRAY", 0);
+			H = imresize(H,5,5);
+			T = convmtx2(H,11,11);
 ***************************************************/
 
 #include <numeric>

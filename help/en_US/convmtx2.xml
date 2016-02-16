@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="convmtx2" xml:lang="en_US"
+					xmlns="http://docbook.org/ns/docbook"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					xmlns:svg="http://www.w3.org/2000/svg"
+					xmlns:ns3="http://www.w3.org/1999/xhtml"
+					xmlns:mml="http://www.w3.org/1998/Math/MathML"
+					xmlns:db="http://docbook.org/ns/docbook">
+
+	<refnamediv>
+		<refname>convmtx2</refname>
+
+		<refpurpose>Returns a convolution matrix for the given matrix</refpurpose>
+	</refnamediv>
+
+	<refsynopsisdiv>
+		<title>Calling Sequence</title>
+
+		<synopsis>T = convmtx2(H, m, n);</synopsis>
+	</refsynopsisdiv>
+	
+	<refsection>
+   		<title>Arguments</title>
+		<variablelist>
+			<varlistentry><term>H:</term>
+				<listitem><para>filter matrix which is to be used</para></listitem>
+			</varlistentry>
+			<varlistentry><term>m, n:</term>
+				<listitem><para>[m,n] is the size of the image on which the convolution is to be performed</para></listitem>
+			</varlistentry>
+			<varlistentry><term>T:</term>
+				<listitem><para>the convolution matrix for H.</para></listitem>
+			</varlistentry>
+		</variablelist>
+	</refsection>
+	
+	<refsection>
+		<title>Description</title>
+		<para>
+			 Multiplying T*X(:) and reshaping will give you the same result as conv2(H,X).
+		</para>
+	</refsection>
+
+	<refsection>
+		<title>Example</title>
+		<programlisting role="example"><![CDATA[
+							H = imread("lena_small.jpg") //just some small image for testing
+							H = cvtColor(H,"CV_RGB2GRAY", 0);
+							H = imresize(H,5,5);
+							T = convmtx2(H,11,11);
+   		]]></programlisting>
+	</refsection>
+
+	<refsection>
+		<title>Authors</title>
+
+		<simplelist type="vert">
+			<member>Yash Bhalgat</member>
+		</simplelist>
+	</refsection>
+</refentry>
